@@ -303,6 +303,3 @@ const printStartupMessage = (agentId: string, port: number) => {
   console.log(`- Local:    ${pc.cyan(`ws://localhost:${port}`)}`);
 };
 
-export const startProviderServer = (source: string, handler: AgentHandler) => {
-  connectRelay({ handler });
-};

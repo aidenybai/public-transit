@@ -29,7 +29,10 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "NODE_ENV=production tsup --clean"
+    "build": "NODE_ENV=production tsup --clean",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "dependencies": {
     "fkill": "^9.0.0",
