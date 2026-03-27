@@ -1,4 +1,4 @@
-# relayo
+# public-transit
 
 A WebSocket relay that connects agent handlers (running in Node.js) with browser clients. Handlers register with the relay server and expose an async generator interface. Browser clients connect over WebSocket to invoke handlers, stream responses, and manage sessions with abort/undo/redo support.
 
@@ -7,7 +7,7 @@ This is useful when you need to bridge a long-running backend process (like an A
 ## Install
 
 ```bash
-npm install relayo
+npm install public-transit
 ```
 
 ## How it works
@@ -31,7 +31,7 @@ npm install relayo
 The simplest way — `connectRelay` auto-starts a relay server if one isn't already running, then registers your handler:
 
 ```ts
-import { connectRelay } from "relayo";
+import { connectRelay } from "public-transit";
 
 const connection = await connectRelay({
   handler: {
@@ -53,7 +53,7 @@ const connection = await connectRelay({
 ### 2. Connect from the browser
 
 ```ts
-import { createRelayClient } from "relayo/client";
+import { createRelayClient } from "public-transit/client";
 
 const client = createRelayClient();
 await client.connect();
@@ -86,7 +86,7 @@ client.onMessage((message) => {
 For a more ergonomic async-iterable interface:
 
 ```ts
-import { createRelayClient, createRelayAgentProvider } from "relayo/client";
+import { createRelayClient, createRelayAgentProvider } from "public-transit/client";
 
 const client = createRelayClient();
 await client.connect();
@@ -111,7 +111,7 @@ for await (const chunk of agent.send(
 If you want to run the relay server separately from handlers:
 
 ```ts
-import { createRelayServer } from "relayo/server";
+import { createRelayServer } from "public-transit/server";
 
 const server = createRelayServer({ port: 4722, token: "secret" });
 await server.start();
@@ -124,10 +124,10 @@ await server.start();
 
 | Path              | Platform | Description                                    |
 | ----------------- | -------- | ---------------------------------------------- |
-| `relayo`          | Node.js  | Everything (server + client + protocol)        |
-| `relayo/server`   | Node.js  | `createRelayServer`                            |
-| `relayo/client`   | Browser  | `createRelayClient`, `createRelayAgentProvider`|
-| `relayo/protocol` | Any      | Shared types and constants                     |
+| `public-transit`          | Node.js  | Everything (server + client + protocol)        |
+| `public-transit/server`   | Node.js  | `createRelayServer`                            |
+| `public-transit/client`   | Browser  | `createRelayClient`, `createRelayAgentProvider`|
+| `public-transit/protocol` | Any      | Shared types and constants                     |
 
 ## Authentication
 
